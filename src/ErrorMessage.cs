@@ -6,7 +6,7 @@ namespace plusplusinterpreter
     {
         static public string GetErrorMessage(this ErrorType error, int line, int column)
         {
-            var errorLocation = $"at line {line} and column {column}.";
+            var errorLocation = $"at line {line} and column {column}!";
 
             switch (error)
             {
