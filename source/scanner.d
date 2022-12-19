@@ -57,6 +57,7 @@ class Scanner
 
                 case '\n':
                     tokens ~= new Token(TokenType.endOfLine, "\\n", line);
+                    ++line;
                     break;
 
                 case '+':
