@@ -13,9 +13,10 @@ class Scanner
         wstring source;
         Token[] tokens;
 
-        int start = 0,
-        current = 0,
-        line = 1;
+        int start,
+        current,
+        line = 1,
+        column = 1;
     }
 
     this(wstring source)
@@ -57,6 +58,7 @@ class Scanner
 
                 case '\n':
                     tokens ~= new Token(TokenType.endOfLine, "\\n", line);
+                    column = 1;
                     ++line;
                     break;
 
@@ -174,13 +176,14 @@ class Scanner
                     break;
 
                 default:
-                    line.reportError("Unexpected character %x".format(source[current - 1]));
+                    line.reportError("Unexpected character %x".format(source[current - 1]), column);
                     break;
             }
         }
 
         auto advance()
         {
+            ++column;
             return source[current++];
         }
 
