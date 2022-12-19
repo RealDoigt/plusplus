@@ -176,7 +176,15 @@ class Scanner
                     break;
 
                 default:
-                    line.reportError("Unexpected character %x".format(source[current - 1]), column);
+                
+                    auto faultyChar = source[current - 1];
+                    
+                    line.reportError
+                    (
+                        faultyChar == ' ' ? "Unexpected space" :
+                        format("Unexpected character %x %s", faultyChar, faultyChar), 
+                        column
+                    );
                     break;
             }
         }
