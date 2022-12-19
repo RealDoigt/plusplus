@@ -3,8 +3,9 @@ import std.stdio;
 import std.file;
 import scanner;
 import std.string;
+import std.conv;
 
-void run (string source)
+void run (wstring source)
 {
     auto scanner = new Scanner(source);
     auto tokens = scanner.scanTokens;
@@ -18,7 +19,7 @@ void runFile(string path)
     scope (failure)
         "the system encountered a problem with the file".writeln;
 
-    path.readText.run;
+    path.readText.to!wstring.run;
 }
 
 void main(string[] args)
