@@ -183,10 +183,10 @@ class Scanner
             return source[current++];
         }
 
-        void addToken(TokenType type, BoxedValue litteral = null)
+        void addToken(TokenType type)
         {
             auto text = source[start..current];
-            tokens ~= new Token(type, text, litteral, line);
+            tokens ~= new Token(type, text, line);
         }
 
         auto match(char expected)
