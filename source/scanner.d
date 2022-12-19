@@ -54,7 +54,7 @@ class Scanner
 
                     break;
 
-                case '\n', '\r', '\t': break; // we're ignoring whitespace
+                case '\n', '\r', '\t': break; // we're ignoring some whitespace
 
                 default:
                     line.reportError("Unexpected character %x".format(source[current - 1]));
@@ -104,7 +104,5 @@ class Scanner
             if (current + 1 >= source.length) return '\0';
             return source[current + 1];
         }
-
-
     }
 }
