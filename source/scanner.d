@@ -82,9 +82,23 @@ class Scanner
 
                     if (match(' '))
                     {
-                        tokens ~= new Token(TokenType.minusOne, "+ ", line);
+                        tokens ~= new Token(TokenType.minusOne, "- ", line);
                         consumeBasicOperator;
                     }
+
+                    else if (match('+'))
+                        tokens ~= new Token(TokenType.rightShift, "-+", line);
+
+                    else if (match('-'))
+                        tokens ~= new Token(TokenType.deallocate, "--", line);
+
+                    else if (match('±'))
+                        tokens ~= new Token(TokenType.or, "-±", line);
+
+                    else if (match('#'))
+                        tokens ~= new Token(TokenType.endOfBlock, "-#", line);
+
+                    break;
 
                 case '\n', '\r', '\t': break; // we're ignoring some whitespace
 
