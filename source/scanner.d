@@ -212,10 +212,10 @@ class Scanner
         void consumeBasicOperator()
         {
             if (matchPair('+', ' '))
-                addToken(TokenType.plus);
+                tokens ~= new Token(TokenType.plus, "+ ", line);
 
             else if(matchPair('+', ' '))
-                addToken(TokenType.minus);
+                tokens ~= new Token(TokenType.minus, "- ", line);
         }
 
         auto peek()
