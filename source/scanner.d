@@ -47,10 +47,11 @@ class Scanner
         {
             switch (advance)
             {
-                case '#':
+                case ' ':
 
-                    while (peek != '\n' && !isAtEnd)
-                        advance;
+                    if (match(' ')) // comments are double spaces
+                        while (peek != '\n' && !isAtEnd)
+                            advance;
 
                     break;
 
