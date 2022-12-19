@@ -82,7 +82,8 @@ class Scanner
 
                     if (match(' '))
                     {
-                        if (matchPair(''))
+                        tokens ~= new Token(TokenType.minusOne, "+ ", line);
+                        consumeBasicOperator;
                     }
 
                 case '\n', '\r', '\t': break; // we're ignoring some whitespace
