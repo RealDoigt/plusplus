@@ -38,7 +38,7 @@ class Scanner
 
     private
     {
-        bool isAtEnd()
+        auto isAtEnd()
         {
             return current >= source.length;
         }
@@ -60,10 +60,8 @@ class Scanner
 
                     if (match(' '))
                     {
-                        if (matchPair('+', ' '))
-                            tokens ~= new Token(TokenType.one, "+ + ", line);
-
-                        else tokens ~= new Token(TokenType.plus, "+ ", line);
+                        tokens ~= new Token(TokenType.one, "+ ", line);
+                        consumeBasicOperator;
                     }
 
                     else if (match('+'))
@@ -80,6 +78,13 @@ class Scanner
 
                     break;
 
+                case '-':
+
+                    if (match(' '))
+                    {
+                        if (matchPair(''))
+                    }
+
                 case '\n', '\r', '\t': break; // we're ignoring some whitespace
 
                 default:
@@ -88,7 +93,7 @@ class Scanner
             }
         }
 
-        char advance()
+        auto advance()
         {
             return source[current++];
         }
@@ -99,7 +104,7 @@ class Scanner
             tokens ~= new Token(type, text, litteral, line);
         }
 
-        bool match(char expected)
+        auto match(char expected)
         {
             if (isAtEnd) return false;
             if (source[current] != expected) return false;
@@ -108,7 +113,7 @@ class Scanner
             return true;
         }
 
-        bool matchPair(char expectedA, char expectedB)
+        auto matchPair(char expectedA, char expectedB)
         {
             if (peek == expectedA && peekNext == expectedB)
             {
@@ -119,13 +124,22 @@ class Scanner
             return false;
         }
 
-        char peek()
+        void consumeBasicOperator()
+        {
+            if (matchPair('+', ' '))
+                tokens ~= new Token(TokenType.plus, "+ ", line);
+
+            else if(matchPair('+', ' '))
+                tokens ~= new Token(TokenType.minus, "- ", line);
+        }
+
+        auto peek()
         {
             if (isAtEnd) return '\0';
             return source[current];
         }
 
-        char peekNext()
+        auto peekNext()
         {
             if (current + 1 >= source.length) return '\0';
             return source[current + 1];
