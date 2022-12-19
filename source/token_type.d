@@ -30,6 +30,8 @@ enum TokenType
     jump,
     createLabel,
 
+    beginBlock,
+
     endOfBlock,
     endOfLine,
     endOfFile,
