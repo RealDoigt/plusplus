@@ -80,6 +80,7 @@ class Scanner
                     else if (match('='))
                         tokens ~= new Token(TokenType.not, "+=", line);
 
+                    else goto default;
                     break;
 
                 case '-':
@@ -102,6 +103,7 @@ class Scanner
                     else if (match('#'))
                         tokens ~= new Token(TokenType.endOfBlock, "-#", line);
 
+                    else goto default;
                     break;
 
                 case '±':
@@ -124,6 +126,7 @@ class Scanner
                     else if (match('='))
                         tokens ~= new Token(TokenType.xor, "±=", line);
 
+                    else goto default;
                     break;
 
                 case '#':
@@ -143,6 +146,18 @@ class Scanner
                     else if (match('#'))
                         tokens ~= new Token(TokenType.asChar, "##", line);
 
+                    else goto default;
+                    break;
+
+                case '=':
+
+                    if (match(' '))
+                        tokens ~= new Token(TokenType.assign, "= ", line);
+
+                    else if (match('='))
+                        tokens ~= new Token(TokenType.equals, "==", line);
+
+                    else goto default;
                     break;
 
                 default:
