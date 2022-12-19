@@ -14,9 +14,9 @@ class Token
 
     this(TokenType type, wstring lexeme, int line)
     {
-        this.type = type;
-        this.line = line;
-        this.lexeme = lexeme;
+        _type = type;
+        _line = line;
+        _lexeme = lexeme;
     }
 
     TokenType type()
