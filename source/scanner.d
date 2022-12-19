@@ -5,7 +5,6 @@ import token_type;
 import std.string;
 import std.array;
 import error;
-import box;
 
 class Scanner
 {
