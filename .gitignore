@@ -1,4 +1,4 @@
 
 *.o
-.dub/build/*
+.dub/*
 plusplus
