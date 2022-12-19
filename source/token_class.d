@@ -8,16 +8,15 @@ class Token
     private
     {
         TokenType _type;
-        string _lexeme;
+        wstring _lexeme;
         int _line;
     }
 
-    this(TokenType type, string lexeme, int line)
+    this(TokenType type, wstring lexeme, int line)
     {
         this.type = type;
         this.line = line;
         this.lexeme = lexeme;
-        this.litteral = litteral;
     }
 
     TokenType type()
@@ -25,7 +24,7 @@ class Token
         return _type;
     }
 
-    string lexeme()
+    wstring lexeme()
     {
         return _lexeme;
     }
