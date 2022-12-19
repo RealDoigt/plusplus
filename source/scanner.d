@@ -73,7 +73,10 @@ class Scanner
                         tokens ~= new Token(TokenType.leftShift, "+-", line);
 
                     else if (match('±'))
-                        tokens ~= new Token(TokenType.And, "+±", line);
+                        tokens ~= new Token(TokenType.and, "+±", line);
+
+                    else if (match('='))
+                        tokens ~= new Token(TokenType.not, "+=", line);
 
                 case '\n', '\r', '\t': break; // we're ignoring some whitespace
 
