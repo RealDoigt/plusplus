@@ -78,6 +78,8 @@ class Scanner
                     else if (match('='))
                         tokens ~= new Token(TokenType.not, "+=", line);
 
+                    break;
+
                 case '\n', '\r', '\t': break; // we're ignoring some whitespace
 
                 default:
