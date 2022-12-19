@@ -32,7 +32,7 @@ class Scanner
             scanToken;
         }
 
-        tokens ~= new Token(TokenType.endOfFile, "", null, line);
+        tokens ~= new Token(TokenType.endOfFile, "", line);
         return tokens;
     }
 
@@ -53,7 +53,23 @@ class Scanner
                         while (peek != '\n' && !isAtEnd)
                             advance;
 
+                    else goto default;
                     break;
+
+                case '+':
+
+                    if (match(' '))
+                    {
+                        if (matchPair('+', ' '))
+                            tokens ~= new Token(TokenType.one, "+ + ", line);
+
+                        else tokens ~= new Token(TokenType.plus, "+ ", line);
+                    }
+
+                    else if (match('+'))
+                        tokens ~= new Token(TokenType.allocate, "++", line);
+
+                    else if (matchPair(''))
 
                 case '\n', '\r', '\t': break; // we're ignoring some whitespace
 
