@@ -185,8 +185,7 @@ class Scanner
 
         void addToken(TokenType type)
         {
-            auto text = source[start..current];
-            tokens ~= new Token(type, text, line);
+            tokens ~= new Token(type, source[start..current], line);
         }
 
         auto match(char expected)
