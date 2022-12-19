@@ -69,7 +69,12 @@ class Scanner
                     }
 
                     else if (match('+'))
-                        tokens ~= new Token(TokenType.allocate, "++", line);
+                    {
+                        if (matchPair('=', '='))
+                            tokens ~= new Token(TokenType.greaterOrEqual, "++==", line);
+
+                        else tokens ~= new Token(TokenType.allocate, "++", line);
+                    }
 
                     else if (match('-'))
                         tokens ~= new Token(TokenType.leftShift, "+-", line);
@@ -95,7 +100,15 @@ class Scanner
                         tokens ~= new Token(TokenType.rightShift, "-+", line);
 
                     else if (match('-'))
-                        tokens ~= new Token(TokenType.deallocate, "--", line);
+                    {
+                        if (matchPair('=', '='))
+                            tokens ~= new Token(TokenType.lowerOrEqual, "--==", line);
+
+                        if (matchPair('-', '-'))
+                            tokens ~= new Token(TokenType.deallocateAll, "----", line);
+
+                        else tokens ~= new Token(TokenType.deallocate, "--", line);
+                    }
 
                     else if (match('±'))
                         tokens ~= new Token(TokenType.or, "-±", line);
