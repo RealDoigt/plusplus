@@ -69,7 +69,10 @@ class Scanner
                     else if (match('+'))
                         tokens ~= new Token(TokenType.allocate, "++", line);
 
-                    else if (matchPair(''))
+                    else if (match('-'))
+                        tokens ~= new Token(TokenType.leftShift, "+-", line);
+
+
 
                 case '\n', '\r', '\t': break; // we're ignoring some whitespace
 
