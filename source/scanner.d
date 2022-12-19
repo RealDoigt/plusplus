@@ -63,26 +63,26 @@ class Scanner
 
                     if (match(' '))
                     {
-                        tokens ~= new Token(TokenType.one, "+ ", line);
+                        addToken(TokenType.one);
                         consumeBasicOperator;
                     }
 
                     else if (match('+'))
                     {
                         if (matchPair('=', '='))
-                            tokens ~= new Token(TokenType.greaterOrEqual, "++==", line);
+                            addToken(TokenType.greaterOrEqual);
 
-                        else tokens ~= new Token(TokenType.allocate, "++", line);
+                        else addToken(TokenType.allocate);
                     }
 
                     else if (match('-'))
-                        tokens ~= new Token(TokenType.leftShift, "+-", line);
+                        addToken(TokenType.leftShift);
 
                     else if (match('±'))
-                        tokens ~= new Token(TokenType.and, "+±", line);
+                        addToken(TokenType.and);
 
                     else if (match('='))
-                        tokens ~= new Token(TokenType.not, "+=", line);
+                        addToken(TokenType.not);
 
                     else goto default;
                     break;
@@ -91,29 +91,29 @@ class Scanner
 
                     if (match(' '))
                     {
-                        tokens ~= new Token(TokenType.minusOne, "- ", line);
+                        addToken(TokenType.minusOne);
                         consumeBasicOperator;
                     }
 
                     else if (match('+'))
-                        tokens ~= new Token(TokenType.rightShift, "-+", line);
+                        addToken(TokenType.rightShift);
 
                     else if (match('-'))
                     {
                         if (matchPair('=', '='))
-                            tokens ~= new Token(TokenType.lowerOrEqual, "--==", line);
+                            addToken(TokenType.lowerOrEqual);
 
                         if (matchPair('-', '-'))
-                            tokens ~= new Token(TokenType.deallocateAll, "----", line);
+                            addToken(TokenType.deallocateAll);
 
-                        else tokens ~= new Token(TokenType.deallocate, "--", line);
+                        else addToken(TokenType.deallocate);
                     }
 
                     else if (match('±'))
-                        tokens ~= new Token(TokenType.or, "-±", line);
+                        addToken(TokenType.or);
 
                     else if (match('#'))
-                        tokens ~= new Token(TokenType.endOfBlock, "-#", line);
+                        addToken(TokenType.endOfBlock);
 
                     else goto default;
                     break;
@@ -122,21 +122,21 @@ class Scanner
 
                     if (match(' '))
                     {
-                        tokens ~= new Token(TokenType.zero, "± ", line);
+                        addToken(TokenType.zero);
                         consumeBasicOperator;
                     }
 
                     else if (match('+'))
-                        tokens ~= new Token(TokenType.jump, "±+", line);
+                        addToken(TokenType.jump);
 
                     else if (match('-'))
-                        tokens ~= new Token(TokenType.createLabel, "±-", line);
+                        addToken(TokenType.createLabel);
 
                     else if (match('±'))
-                        tokens ~= new Token(TokenType.jumpIfTrue, "±±", line);
+                        addToken(TokenType.jumpIfTrue);
 
                     else if (match('='))
-                        tokens ~= new Token(TokenType.xor, "±=", line);
+                        addToken(TokenType.xor);
 
                     else goto default;
                     break;
@@ -144,19 +144,19 @@ class Scanner
                 case '#':
 
                     if (match(' '))
-                        tokens ~= new Token(TokenType.accessValue, "# ", line);
+                        addToken(TokenType.accessValue);
 
                     else if (match('+'))
-                        tokens ~= new Token(TokenType.input, "#+", line);
+                        addToken(TokenType.input);
 
                     else if (match('-'))
-                        tokens ~= new Token(TokenType.print, "#-", line);
+                        addToken(TokenType.print);
 
                     else if (match('±'))
-                        tokens ~= new Token(TokenType.accessIA, "#±", line);
+                        addToken(TokenType.accessIA);
 
                     else if (match('#'))
-                        tokens ~= new Token(TokenType.asChar, "##", line);
+                        addToken(TokenType.asChar);
 
                     else goto default;
                     break;
@@ -164,10 +164,10 @@ class Scanner
                 case '=':
 
                     if (match(' '))
-                        tokens ~= new Token(TokenType.assign, "= ", line);
+                        addToken(TokenType.assign);
 
                     else if (match('='))
-                        tokens ~= new Token(TokenType.equals, "==", line);
+                        addToken(TokenType.equals);
 
                     else goto default;
                     break;
@@ -212,10 +212,10 @@ class Scanner
         void consumeBasicOperator()
         {
             if (matchPair('+', ' '))
-                tokens ~= new Token(TokenType.plus, "+ ", line);
+                addToken(TokenType.plus);
 
             else if(matchPair('+', ' '))
-                tokens ~= new Token(TokenType.minus, "- ", line);
+                addToken(TokenType.minus);
         }
 
         auto peek()
