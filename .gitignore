@@ -1,2 +1,3 @@
 
-src/obj/adhoc_1.csprojAssemblyReference.cache
+*.o
+.dub/build/*
