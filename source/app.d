@@ -24,5 +24,5 @@ void runFile(string path)
 void main(string[] args)
 {
     if (args.length == 2) args[1].runFile;
-    else "++ Interpreter usage: ppi <file> (%d)".writeln;
+    else "++ Interpreter usage: ppi <file>".writeln;
 }
