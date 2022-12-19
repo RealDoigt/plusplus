@@ -36,6 +36,6 @@ class Token
 
     override string toString()
     {
-        return "%s %s".format(type, lexeme);
+        return "line %d %s %s".format(line, type, lexeme);
     }
 }
