@@ -104,6 +104,28 @@ class Scanner
 
                     break;
 
+                case '±':
+
+                    if (match(' '))
+                    {
+                        tokens ~= new Token(TokenType.zero, "± ", line);
+                        consumeBasicOperator;
+                    }
+
+                    else if (match('+'))
+                        tokens ~= new Token(TokenType.jump, "±+", line);
+
+                    else if (match('-'))
+                        tokens ~= new Token(TokenType.createLabel, "±-", line);
+
+                    else if (match('±'))
+                        tokens ~= new Token(TokenType.jumpIfTrue, "±±", line);
+
+                    else if (match('='))
+                        tokens ~= new Token(TokenType.xor, "±=", line);
+
+                    break;
+
                 default:
                     line.reportError("Unexpected character %x".format(source[current - 1]));
                     break;
