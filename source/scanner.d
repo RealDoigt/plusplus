@@ -15,7 +15,7 @@ class Scanner
 
         int start = 0,
         current = 0,
-        line = 0;
+        line = 1;
     }
 
     this(wstring source)
