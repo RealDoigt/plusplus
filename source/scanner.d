@@ -10,7 +10,7 @@ class Scanner
 {
     private
     {
-        string source;
+        wstring source;
         Token[] tokens;
 
         int start = 0,
@@ -18,7 +18,7 @@ class Scanner
         line = 0;
     }
 
-    this(string source)
+    this(wstring source)
     {
         this.source = source;
     }
@@ -56,7 +56,7 @@ class Scanner
                     break;
 
                 case '\n':
-                    tokens ~= Token(TokenType.endOfLine, "\\n", line);
+                    tokens ~= new Token(TokenType.endOfLine, "\\n", line);
                     break;
 
                 case '+':
@@ -188,7 +188,7 @@ class Scanner
             tokens ~= new Token(type, source[start..current], line);
         }
 
-        auto match(char expected)
+        auto match(wchar expected)
         {
             if (isAtEnd) return false;
             if (source[current] != expected) return false;
@@ -197,7 +197,7 @@ class Scanner
             return true;
         }
 
-        auto matchPair(char expectedA, char expectedB)
+        auto matchPair(wchar expectedA, wchar expectedB)
         {
             if (peek == expectedA && peekNext == expectedB)
             {
