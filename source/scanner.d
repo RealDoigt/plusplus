@@ -56,6 +56,10 @@ class Scanner
                     else goto default;
                     break;
 
+                case '\n':
+                    tokens ~= Token(TokenType.endOfLine, "\\n", line);
+                    break;
+
                 case '+':
 
                     if (match(' '))
@@ -99,8 +103,6 @@ class Scanner
                         tokens ~= new Token(TokenType.endOfBlock, "-#", line);
 
                     break;
-
-                case '\n', '\r', '\t': break; // we're ignoring some whitespace
 
                 default:
                     line.reportError("Unexpected character %x".format(source[current - 1]));
