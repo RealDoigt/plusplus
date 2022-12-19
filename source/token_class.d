@@ -13,7 +13,7 @@ class Token
         int _line;
     }
 
-    this(TokenType type, string lexeme, BoxedValue litteral, int line)
+    this(TokenType type, string lexeme, int line)
     {
         this.type = type;
         this.line = line;
