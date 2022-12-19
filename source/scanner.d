@@ -126,6 +126,25 @@ class Scanner
 
                     break;
 
+                case '#':
+
+                    if (match(' '))
+                        tokens ~= new Token(TokenType.accessValue, "# ", line);
+
+                    else if (match('+'))
+                        tokens ~= new Token(TokenType.input, "#+", line);
+
+                    else if (match('-'))
+                        tokens ~= new Token(TokenType.print, "#-", line);
+
+                    else if (match('±'))
+                        tokens ~= new Token(TokenType.accessIA, "#±", line);
+
+                    else if (match('#'))
+                        tokens ~= new Token(TokenType.asChar, "##", line);
+
+                    break;
+
                 default:
                     line.reportError("Unexpected character %x".format(source[current - 1]));
                     break;
