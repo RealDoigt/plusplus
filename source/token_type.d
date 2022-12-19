@@ -30,5 +30,6 @@ enum TokenType
     Jump,
     CreateLabel,
 
-    endOfLine
+    endOfLine,
+    endOfFile,
 }
