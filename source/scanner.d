@@ -21,7 +21,7 @@ class Scanner
 
     this(wstring source)
     {
-        this.source = source;
+        this.source = colin ? source.colinize : source;
     }
 
     Token[] scanTokens()
@@ -242,3 +242,10 @@ class Scanner
         }
     }
 }
+
+auto colinize(source)
+{
+    return source.replace("_+", "±");
+}
+
+auto colin = false;

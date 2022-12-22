@@ -24,6 +24,10 @@ void runFile(string path)
 
 void main(string[] args)
 {
-    if (args.length == 2) args[1].runFile;
+    if (args.length > 1) 
+    { 
+        colin = args.length > 3 && args[2] == "-colin";
+        args[1].runFile;
+    }
     else "++ Interpreter usage: ppi <file>".writeln;
 }
